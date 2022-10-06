@@ -65,7 +65,7 @@ const Thanks: React.FC = () => {
 				<Grid item xs={12}>
 					<Box display='flex' alignItems='center'>
 						<Box width='100%' mr={1}>
-							Confirm
+							Thanks
 						</Box>
 						{/* <Box width='100%' mr={1}>
 								<ComponentsTooltip title='Write new entry'>

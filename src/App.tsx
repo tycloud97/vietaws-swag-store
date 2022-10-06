@@ -1,21 +1,16 @@
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import {Brightness3, Favorite, FlareRounded} from '@material-ui/icons';
-import './index.css';
-import {Button, IconButton, Link} from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import {makeStyles, ThemeProvider} from '@material-ui/core/styles';
-import React, {useEffect, useState} from 'react';
-import {isMobile} from 'react-device-detect';
-import ReactGA, {ga} from 'react-ga';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import { Brightness3, FlareRounded } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
+import ReactGA, { ga } from 'react-ga';
+import './index.css';
 
 import AlertsBanner from './components/AlertsBanner';
 import ComponentsTooltip from './components/ComponentsTooltip';
-import CookiesBanner from './components/CookiesBanner';
-import InfoDialog from './components/InfoDialog';
-import {PrivacyPolicy} from './constants/PrivacyTexts';
 import theme from './muiTheme';
 import Decision from './scenes/Decision/Decision';
 
@@ -154,53 +149,7 @@ const App: React.FC = () => {
 						</Toolbar>
 					</AppBar>
 					<Decision />
-					<Grid className={classes.footer} container justify='center' alignContent='center'>
-						<Typography component='span' variant='caption' align='center'>
-							<Grid item xs={12}>
-								Made with&nbsp;
-								<span style={{position: 'relative', top: appTheme.spacing(0.35)}}>
-									<Favorite aria-label='love' fontSize='inherit' />
-								</span>
-								&nbsp;by
-{' '}
-								<Link
-									data-testid='cjoeckerLink'
-									href='https://www.cjoecker.de/'
-									onClick={() =>
-										ReactGA.event({
-											category: 'Redirect',
-											action: 'Redirect to cjoecker.de',
-										})
-									}
-									rel='noopener noreferrer'
-									underline='always'
-									target='_blank'
-									tabIndex={localStorage.getItem('cookieConsentAccepted') == null ? -1 : 0}
-									aria-label={"Christian Jöcker's(opens personal website in a new window)"}
-								>
-									Christian Jöcker
-								</Link>
-							</Grid>
-							<Grid item xs={12}>
-								<Button
-									className={classes.linkButton}
-									data-testid='privacyPolicyLink'
-									onClick={() => setIsPrivacyPolicyVisible(true)}
-									color='primary'
-								>
-									Privacy Policy
-								</Button>
-							</Grid>
-						</Typography>
-					</Grid>
 					<AlertsBanner />
-					<CookiesBanner />
-					<InfoDialog
-						hasFullWidth
-						text={PrivacyPolicy}
-						isVisible={isPrivacyPolicyVisible}
-						onClose={() => setIsPrivacyPolicyVisible(false)}
-					/>
 				</div>
 			</main>
 		</ThemeProvider>

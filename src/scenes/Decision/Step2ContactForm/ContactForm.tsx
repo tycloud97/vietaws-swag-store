@@ -1,7 +1,8 @@
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, makeStyles, Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import { ContactFormFields } from './components/ContactFormFields';
+import { ShoppingCart } from './components/ShoppingCart';
 
 // const onChangeNewEntry$ = new Subject();
 
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 		margin: theme.spacing(2, 1, 2, 1),
 	},
 
+	paper: {
+		maxWidth: '85%',
+	},
 	// 	paperItems: {
 	// 		margin: theme.spacing(1, 1, 0, 1),
 	// 	},
@@ -64,9 +68,19 @@ const ContactForm: React.FC = () => {
 		<div className={classes.divMain}>
 			<Grid container justify='center' alignContent='center'>
 				<Grid item xs={12}>
-					<Box display='flex' alignItems='center'>
-						<Box width='100%' mr={1}>
-							<ContactFormFields />
+					<Box display='flex' alignItems='center' flexDirection={'row'}>
+						<Box flexDirection={'column'} flex={1}>
+							<Paper elevation={7}>
+
+								<ContactFormFields />
+							</Paper>
+
+						</Box>
+
+						<Box flexDirection={'column'} flex={1}>
+							<Paper elevation={7}>
+								<ShoppingCart />
+							</Paper>
 						</Box>
 						{/* <Box width='100%' mr={1}>
 								<ComponentsTooltip title='Write new entry'>

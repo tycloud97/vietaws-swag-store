@@ -1,10 +1,17 @@
-# d-cide  
+# Viet-AWS Swag Store
 
-### Rational decision making web app  
-![d-cide screenshot](https://d-cide.me/preview.gif)
+### Introduction
 
-This app will support you in the process of making rational decisions.
-Using different usability heuristics and behavioral psychology, it aims to avoid cognitive bias.  
+- This project was built for the purpose of demo an AWS solution.
+- We will focus on providing a solution based on the actual use case of an e-commerce website.
 
-Try it now on [d-cide.me](https://d-cide.me/) ! 
+## Quick start
 
+```
+yarn
+yarn start
+```
+
+## Tasks
+- [x] Frontend: Setup basic customer journey (step by step) to select and buy a swag.
+- [x] Backend: Build a scalable Serverless API to receive request order from end customer. (Use AWS Step Function, SQS)

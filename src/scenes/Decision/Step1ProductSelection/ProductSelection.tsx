@@ -79,9 +79,6 @@ const ProductSelection: React.FC = () => {
 								<Grid item md={3} sm={6} xs={12}>
 									<ProductItem />
 								</Grid>
-								<Grid item md={3} sm={6} xs={12}>
-									<ProductItem />
-								</Grid>
 							</Grid>
 						</Box>
 						{/* <Box width='100%' mr={1}>
