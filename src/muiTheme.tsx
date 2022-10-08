@@ -43,7 +43,7 @@ function theme(darkMode = false): Theme {
 
 	return createMuiTheme({
 		typography: {
-			fontFamily: ['Quicksand', 'Calibri', 'sans-serif'].join(','),
+			fontFamily: ['Inter', 'sans-serif'].join(','),
 			caption: {
 				fontWeight: 400,
 				fontSize: 14,
