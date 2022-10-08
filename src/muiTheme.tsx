@@ -1,4 +1,4 @@
-import {createMuiTheme, Theme} from '@material-ui/core/styles';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
 
 function theme(darkMode = false): Theme {
 	//Light Theme
@@ -121,9 +121,8 @@ function theme(darkMode = false): Theme {
 			},
 			MuiStepIcon: {
 				root: {
-					boxShadow: `4px 4px 8px rgba(0, 0, 0, ${darkMode ? 0.3 : 0.4}), -4px -4px 8px rgba(255, 255, 255, ${
-						darkMode ? 0.07 : 0.6
-					})`,
+					boxShadow: `4px 4px 8px rgba(0, 0, 0, ${darkMode ? 0.3 : 0.4}), -4px -4px 8px rgba(255, 255, 255, ${darkMode ? 0.07 : 0.6
+						})`,
 					borderRadius: '50%',
 					color: shadeHexColor(background, darkMode ? 0.1 : -0.5),
 					'&$active': {
@@ -158,9 +157,8 @@ function theme(darkMode = false): Theme {
 			},
 			MuiFab: {
 				root: {
-					boxShadow: `6px 6px 12px rgba(0, 0, 0, ${darkMode ? 0.25 : 0.4}), -6px -6px 12px rgba(255, 255, 255, ${
-						darkMode ? 0.1 : 0.7
-					})`,
+					boxShadow: `6px 6px 12px rgba(0, 0, 0, ${darkMode ? 0.25 : 0.4}), -6px -6px 12px rgba(255, 255, 255, ${darkMode ? 0.1 : 0.7
+						})`,
 					'&:active': {
 						boxShadow: `inset 6px 6px 12px rgba(0, 0, 0, 0.5), inset -6px -6px 12px rgba(180, 180, 180, 0.4)`,
 					},
@@ -191,14 +189,12 @@ function theme(darkMode = false): Theme {
 				contained: {
 					borderRadius: '20px',
 					background: `linear-gradient(145deg, ${primary}, ${shadeHexColor(primary, -0.4)})`,
-					boxShadow: `5px 5px 10px rgba(0, 0, 0, ${darkMode ? 0.2 : 0.4}), -5px -5px 10px rgba(255, 255, 255, ${
-						darkMode ? 0.1 : 0.7
-					})`,
+					boxShadow: `5px 5px 10px rgba(0, 0, 0, ${darkMode ? 0.2 : 0.4}), -5px -5px 10px rgba(255, 255, 255, ${darkMode ? 0.1 : 0.7
+						})`,
 					'&:hover': {
 						background: `linear-gradient(145deg, ${shadeHexColor(primary, -0.15)}, ${shadeHexColor(primary, -0.45)})`,
-						boxShadow: `5px 5px 10px rgba(0, 0, 0, ${darkMode ? 0.2 : 0.4}), -5px -5px 10px rgba(255, 255, 255, ${
-							darkMode ? 0.1 : 0.7
-						})`,
+						boxShadow: `5px 5px 10px rgba(0, 0, 0, ${darkMode ? 0.2 : 0.4}), -5px -5px 10px rgba(255, 255, 255, ${darkMode ? 0.1 : 0.7
+							})`,
 					},
 					'&:active': {
 						background: primary,

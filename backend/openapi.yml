@@ -33,22 +33,22 @@ components:
       type: object
       additionalProperties: true
       properties:
-        email: 
+        email:
           type: string
-          example: 'abc@gmail.com'
+          example: "abc@gmail.com"
     DeliveryAddress:
       type: object
       additionalProperties: true
       properties:
         full_name:
           type: string
-          example: 'Nguyen Van A'
+          example: "Nguyen Van A"
         phone_number:
           type: string
-          example: '0123456789'
+          example: "0123456789"
         address:
           type: string
-          example: '999 Hoàng Văn Thụ, Q. Hải Châu, Đà Nẵng'
+          example: "999 Hoàng Văn Thụ, Q. Hải Châu, Đà Nẵng"
     Product:
       type: object
       additionalProperties: true

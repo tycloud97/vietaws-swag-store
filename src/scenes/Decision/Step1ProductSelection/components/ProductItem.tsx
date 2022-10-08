@@ -1,9 +1,23 @@
-import { Box, Button, Card, Collapse, Divider, Typography, useTheme } from "@material-ui/core"
+import { Box, Button, Card, Collapse, Typography, useTheme } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
-import React, { useState } from "react"
-import { StepperInput } from "./StepperInput";
+import { InsetSpacing } from "components/Spacing";
+import React, { useState } from "react";
+import { Product } from "services/product-service";
 
-const ProductItem: React.FC = () => {
+export type ProductItemProps = {
+    product: Product
+    actionComponent?: React.ReactNode
+}
+
+function formatCurrency(num: number) {
+    return num?.toLocaleString().replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
+
+const ProductItem = (props: ProductItemProps) => {
+    const {
+        product,
+        actionComponent
+    } = props
     const theme = useTheme();
     const [expanded, setExpanded] = useState(false)
 
@@ -18,94 +32,52 @@ const ProductItem: React.FC = () => {
                 aspectRatio: '3/2'
             }}
         />
-        <Box
-            bgcolor={theme.palette.secondary.main}
-            color="primary.contrastText"
-            position="absolute"
-            style={{
-                width: '100%',
-                padding: 20,
-                bottom: 0,
-                right: 0,
-                zIndex: 10
-            }}
-            textAlign="center"
-        >
-            <Typography
-                align="left"
-                style={{ whiteSpace: 'pre-wrap' }}
-                variant="caption"
-            >
-                Áo đẹp
-            </Typography>
-        </Box>
     </span>
+
     const expand = {
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
-        height: 33
     }
 
     const expandOpen = {
         transform: 'rotate(180deg)',
         marginLeft: 'auto',
-        height: 33
     }
 
     return (<Card elevation={2} style={{ minHeight: '100%' }}>
-        <Typography align="center" color="textPrimary">
-            <b>Áo</b>
-        </Typography>
+        <InsetSpacing scale={3}>
+            <Typography align="center" color="textPrimary" variant="h5">
+                {product.name}
+            </Typography>
+        </InsetSpacing>
         {imageComponent}
-
-        <Box textAlign="center" width="100%">
-            <Typography>Ty</Typography>
-        </Box>
-        <Box alignItems="center" >
-            <Box minHeight={'4rem'} textAlign="center">
+        <InsetSpacing scale={3}>
+            <Box display={'flex'} alignItems={'flex-start'} justifyContent={'center'}>
                 <Typography
+                    variant="h5"
                     color="textPrimary"
                     style={{ fontSize: 36, lineHeight: '120%' }}
                 >
-                    <b>
-                        100 VND
-                    </b>
+                    {formatCurrency(product.price)}
                 </Typography>
-                <Typography style={{ lineHeight: '150%' }}>
-                    <b>123</b>
-                </Typography>
+                <Typography style={{ lineHeight: '150%' }} variant="h6">
+                    VND
+                </Typography >
             </Box>
-        </Box>
+            {actionComponent}
 
-
-        {renderQuantityStepper(10, (newQuantity: number) => newQuantity)}
-        {/* {actionComponent} */}
-
-        <Divider style={{ width: '100%' }} />
-
-        <Box textAlign="center">
-            <Typography
-                align="center"
-                color="textSecondary"
-                style={{ whiteSpace: 'pre-wrap' }}
-                variant="caption"
-            >
-                Ty
-            </Typography>
-        </Box>
-
-        <Button
+            <Button
             aria-expanded={expanded}
             aria-label="show more"
             color="primary"
             fullWidth
             onClick={() => setExpanded(!expanded)}
             size="large"
-            style={{ marginBottom: theme.spacing(4) }}
         >
             <Box alignItems="center" color="text.primary" fontSize="14px">
-                <Box alignItems="center" >
-                    <u>Detail</u>
+                <Box alignItems="center" display={'flex'}>
+                    <Typography component="span"
+                    >Chi tiết</Typography>
                     <ExpandMore
                         color="primary"
                         name="chevron-down"
@@ -115,27 +87,13 @@ const ProductItem: React.FC = () => {
             </Box>
         </Button>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <Box alignItems="stretch" >
-                Hello
-            </Box>
+                <Box alignItems="stretch" >
+                    {product.description}
+                </Box>
         </Collapse>
+        </InsetSpacing>
+        
     </Card >
-    )
-}
-
-
-function renderQuantityStepper(
-    quantity: number,
-    quantityChangeCallback: (newQuantity: number) => void
-) {
-    return (
-        <StepperInput
-            inputProps={{ size: '3', maxLength: '3' }}
-            onChange={(e) => quantityChangeCallback(Number(e.target.value))}
-            onEndIconClick={() => quantityChangeCallback(quantity + 1)}
-            onStartIconClick={() => quantityChangeCallback(quantity - 1)}
-            value={quantity}
-        />
     )
 }
 

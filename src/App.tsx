@@ -60,7 +60,6 @@ const useStyles = makeStyles(styleTheme => ({
 const App: React.FC = () => {
 	const classes = useStyles();
 
-	const [isPrivacyPolicyVisible, setIsPrivacyPolicyVisible] = useState(false);
 	const [isDarkModeActive, setIsDarkModeActive] = useState(false);
 
 	useEffect(() => {
@@ -135,7 +134,6 @@ const App: React.FC = () => {
 						style={{marginBottom: isMobile ? 0 : appTheme.spacing(-2)}}
 					>
 						<Toolbar>
-							{/* <Logo className={classes.logo} fill={isDarkModeActive ? 'white' : appTheme.palette.primary.main} /> */}
 							<div style={{flexGrow: 1}} />
 							<ComponentsTooltip>
 								<IconButton
