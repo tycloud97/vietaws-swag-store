@@ -1,38 +1,54 @@
 
-import { Grid, TextField } from '@material-ui/core'
+import { Grid, TextField, Typography } from '@material-ui/core'
 import { ReactElement } from 'react'
 
 import React from 'react'
+import { InsetSpacing } from 'components/Spacing'
 
 export const ContactFormFields = (
 ): ReactElement => {
   return (
-    <>
-      <Grid item md={6} sm={12} xs={12}>
-        <TextField
-          name="fullName"
-          label="Họ và tên" />
+    <InsetSpacing scale={3}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant='h6'>
+            Thông tin khách hàng
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant='outlined'
+            required
+            fullWidth
+            name="fullName"
+            label="Họ và tên" />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant='outlined'
+            required
+            type='email'
+            fullWidth
+            name="email"
+            label="Email" />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            variant='outlined'
+            required
+            fullWidth
+            name="phone"
+            label="Điện thoại" />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            variant='outlined'
+            fullWidth
+            name="address"
+            label="Địa chỉ" />
+        </Grid>
       </Grid>
-      <Grid item md={6} sm={12} xs={12}>
-
-        <TextField
-          name="email"
-          label="Email" />
-      </Grid>
-
-      <Grid item md={6} sm={12} xs={12}>
-
-        <TextField
-          name="phone"
-          label="Điện thoại" />
-      </Grid>
-
-      <Grid item md={6} sm={12} xs={12}>
-
-        <TextField
-          name="address"
-          label="Địa chỉ" />
-      </Grid>
-    </>
+    </InsetSpacing>
   )
 }

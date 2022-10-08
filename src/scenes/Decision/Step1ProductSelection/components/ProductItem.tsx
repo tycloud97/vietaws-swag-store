@@ -1,4 +1,4 @@
-import { Box, Button, Card, Collapse, Typography, useTheme } from "@material-ui/core";
+import { Box, Button, Card, Collapse, Typography } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { InsetSpacing } from "components/Spacing";
 import React, { useState } from "react";
@@ -18,7 +18,6 @@ const ProductItem = (props: ProductItemProps) => {
         product,
         actionComponent
     } = props
-    const theme = useTheme();
     const [expanded, setExpanded] = useState(false)
 
     const imageComponent = <span style={{ display: 'flex', flex: 1, position: 'relative' }}>
@@ -66,35 +65,31 @@ const ProductItem = (props: ProductItemProps) => {
             </Box>
 
             {actionComponent}
-            <Box mb={3}>
-                <Button
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                    color="primary"
-                    fullWidth
-                    onClick={() => setExpanded(!expanded)}
-                    size="large"
-                >
-                    <Box alignItems="center" color="text.primary" fontSize="14px">
-                        <Box alignItems="center" display={'flex'}>
-                            <Typography component="span"
-                            >Chi tiết</Typography>
-                            <ExpandMore
-                                color="primary"
-                                name="chevron-down"
-                                style={expanded ? expandOpen : expand}
-                            />
-                        </Box>
+            <Button
+                aria-expanded={expanded}
+                aria-label="show more"
+                color="primary"
+                fullWidth
+                onClick={() => setExpanded(!expanded)}
+                size="large"
+            >
+                <Box alignItems="center" color="text.primary" fontSize="14px">
+                    <Box alignItems="center" display={'flex'}>
+                        <Typography component="span">Chi tiết</Typography>
+                        <ExpandMore
+                            color="primary"
+                            name="chevron-down"
+                            style={expanded ? expandOpen : expand}
+                        />
                     </Box>
-                </Button>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <Box alignItems="stretch" >
-                        {product.description}
-                    </Box>
-                </Collapse>
-            </Box>
+                </Box>
+            </Button>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <Box alignItems="stretch" >
+                    {product.description}
+                </Box>
+            </Collapse>
         </InsetSpacing>
-
     </Card >
     )
 }

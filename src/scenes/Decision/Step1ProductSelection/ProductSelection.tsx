@@ -4,7 +4,6 @@ import React from 'react';
 import { getProducts } from 'services/product-service';
 import ProductItem from './components/ProductItem';
 
-// const onChangeNewEntry$ = new Subject();
 
 const useStyles = makeStyles((theme) => ({
 	divMain: {
@@ -27,27 +26,9 @@ const ProductSelection: React.FC = () => {
 	const actionButtonLabel = 'Thêm vào giỏ hàng';
 	const actionButtonRemoveLabel = 'Xóa khỏi giỏ hàng';
 	const isSelected = false
-	// const [didMount, setDidMount] = useState(false);
-	// const [newEntry, setNewEntry] = useState('');
-	// const [localItems, setLocalItems] = useState<OptionAndCriteria[]>([]);
-	// const [stopAnimation, setStopAnimation] = useState(false);
-	// const [itemsType, setItemsType] = useState('');
-	// const items = useSelector((state: RootState) => state.OptionsAndCriteria[itemsKey], shallowEqual);
-	// const [areInstructionsVisible, setAreInstructionsVisible] = useState(false);
-	// const newEntryRef = useRef('');
-
-	// const {instructionsStepNum} = useSelector((state: RootState) => state.App, shallowEqual);
-
-	// const paperRef = useRef(null);
-
-	// const startAnimationDelay = 400;
-	// const animationDelayPerItem = 200;
-
-	// const isDecisionOptionsList = itemsKey === OptionsAndCriteriaKeys.decisionOptions;
 
 	const classes = useStyles();
-	// const dispatch = useDispatch();
-	// const theme = useTheme();
+
 	const actionCallback = () => { }
 
 	const disabled = false
