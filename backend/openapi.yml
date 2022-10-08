@@ -1,0 +1,81 @@
+openapi: 3.0.2
+
+info:
+  title: Order API
+  version: 1.0.0
+  description: |
+    Use this API to handle create orders from frontend
+
+tags:
+  - name: Order
+    description: Order
+
+paths:
+  /v1/orders:
+    post:
+      operationId: createOrder
+      summary: createOrder
+      description: Create an order
+      tags:
+        - Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderPayload"
+      responses:
+        201:
+          description: Success
+
+components:
+  schemas:
+    Contact:
+      type: object
+      additionalProperties: true
+      properties:
+        email: 
+          type: string
+          example: 'abc@gmail.com'
+    DeliveryAddress:
+      type: object
+      additionalProperties: true
+      properties:
+        full_name:
+          type: string
+          example: 'Nguyen Van A'
+        phone_number:
+          type: string
+          example: '0123456789'
+        address:
+          type: string
+          example: '999 Hoàng Văn Thụ, Q. Hải Châu, Đà Nẵng'
+    Product:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+          example: 9999
+        quantity:
+          type: number
+          example: 1
+        options:
+          type: object
+          description: Options for product
+          additionalProperties: true
+          example:
+            size: XL
+            color: Yellow
+            gender: Male
+    OrderPayload:
+      description: Order information
+      type: object
+      properties:
+        contact:
+          $ref: "#/components/schemas/Contact"
+        delivery_address:
+          $ref: "#/components/schemas/DeliveryAddress"
+        products:
+          description: Product selection
+          items:
+            $ref: "#/components/schemas/Product"
