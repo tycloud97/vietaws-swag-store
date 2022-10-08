@@ -52,7 +52,7 @@ const ProductItem = (props: ProductItemProps) => {
         </InsetSpacing>
         {imageComponent}
         <InsetSpacing scale={3}>
-            <Box display={'flex'} alignItems={'flex-start'} justifyContent={'center'}>
+            <Box mb={3} display={'flex'} alignItems={'flex-start'} justifyContent={'center'}>
                 <Typography
                     variant="h5"
                     color="textPrimary"
@@ -64,35 +64,37 @@ const ProductItem = (props: ProductItemProps) => {
                     VND
                 </Typography >
             </Box>
-            {actionComponent}
 
-            <Button
-            aria-expanded={expanded}
-            aria-label="show more"
-            color="primary"
-            fullWidth
-            onClick={() => setExpanded(!expanded)}
-            size="large"
-        >
-            <Box alignItems="center" color="text.primary" fontSize="14px">
-                <Box alignItems="center" display={'flex'}>
-                    <Typography component="span"
-                    >Chi tiết</Typography>
-                    <ExpandMore
-                        color="primary"
-                        name="chevron-down"
-                        style={expanded ? expandOpen : expand}
-                    />
-                </Box>
+            {actionComponent}
+            <Box mb={3}>
+                <Button
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                    color="primary"
+                    fullWidth
+                    onClick={() => setExpanded(!expanded)}
+                    size="large"
+                >
+                    <Box alignItems="center" color="text.primary" fontSize="14px">
+                        <Box alignItems="center" display={'flex'}>
+                            <Typography component="span"
+                            >Chi tiết</Typography>
+                            <ExpandMore
+                                color="primary"
+                                name="chevron-down"
+                                style={expanded ? expandOpen : expand}
+                            />
+                        </Box>
+                    </Box>
+                </Button>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Box alignItems="stretch" >
+                        {product.description}
+                    </Box>
+                </Collapse>
             </Box>
-        </Button>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <Box alignItems="stretch" >
-                    {product.description}
-                </Box>
-        </Collapse>
         </InsetSpacing>
-        
+
     </Card >
     )
 }

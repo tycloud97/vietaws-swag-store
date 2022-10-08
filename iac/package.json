@@ -1,0 +1,25 @@
+{
+  "name": "vietaws-swag-store",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "deploy": "cdk deploy"
+  },
+  "devDependencies": {
+    "aws-cdk-lib": "2.45.0",
+    "constructs": "10.1.125",
+    "@types/node": "10.17.27",
+    "aws-sdk": "2.853.0",
+    "eslint": "7.20.0",
+    "jest": "26.4.2",
+    "source-map-support": "0.5.16",
+    "ts-jest": "26.2.0",
+    "ts-node": "9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "peerDependencies": {
+    "aws-cdk-lib": "2.45.0",
+    "constructs": "10.1.125"
+  }
+}
