@@ -8,14 +8,14 @@
 ## Quick start
 
 ```
-yarn
-yarn start
+npm
+npm run start
 ```
 
 ## Deploy
 
 ```
-yarn build
+npm run build
 cd iac
 npm i
 npm run deploy
