@@ -1,4 +1,5 @@
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import "@fontsource/inter";
 
 function theme(darkMode = false): Theme {
 	//Light Theme
