@@ -23,4 +23,4 @@ npm run deploy
 
 ## Tasks
 - [x] Frontend: Setup basic customer journey (step by step) to select and buy a swag.
-- [x] Backend: Build a scalable Serverless API to receive request order from end customer. (Use AWS Step Function, SQS)
+- [ ] Backend: Build a scalable Serverless API to receive request order from end customer. (Use AWS Step Function, SQS)

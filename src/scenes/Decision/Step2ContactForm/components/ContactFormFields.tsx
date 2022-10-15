@@ -4,9 +4,18 @@ import { ReactElement } from 'react'
 
 import React from 'react'
 import { InsetSpacing } from 'components/Spacing'
+import { RootState } from 'services/redux/rootReducer'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import DeliveryAddressSlice from 'services/redux/actionsAndSlicers/DeliveryAddressSlice'
+import ContactSlice from 'services/redux/actionsAndSlicers/ContactSlice'
 
 export const ContactFormFields = (
 ): ReactElement => {
+	const {email} = useSelector((state: RootState) => state.Contact, shallowEqual);
+	const {address, phoneNumber, fullName} = useSelector((state: RootState) => state.DeliveryAddress, shallowEqual);
+
+  const dispatch = useDispatch();
+
   return (
     <InsetSpacing scale={3}>
       <Grid container spacing={2}>
@@ -20,6 +29,8 @@ export const ContactFormFields = (
             variant='outlined'
             required
             fullWidth
+            value={fullName}
+            onChange={event => dispatch(DeliveryAddressSlice.actions.setFullName(event.target.value))}
             name="fullName"
             label="Họ và tên" />
         </Grid>
@@ -27,7 +38,9 @@ export const ContactFormFields = (
           <TextField
             variant='outlined'
             required
+            value={email}
             type='email'
+            onChange={event => dispatch(ContactSlice.actions.setEmail(event.target.value))}
             fullWidth
             name="email"
             label="Email" />
@@ -37,7 +50,9 @@ export const ContactFormFields = (
             variant='outlined'
             required
             fullWidth
-            name="phone"
+            value={phoneNumber}
+            onChange={event => dispatch(DeliveryAddressSlice.actions.setPhoneNumber(event.target.value))}
+            name="phoneNumber"
             label="Điện thoại" />
         </Grid>
         <Grid item xs={12}>
@@ -45,6 +60,8 @@ export const ContactFormFields = (
             required
             variant='outlined'
             fullWidth
+            value={address}
+            onChange={event => dispatch(DeliveryAddressSlice.actions.setAddress(event.target.value))}
             name="address"
             label="Địa chỉ" />
         </Grid>

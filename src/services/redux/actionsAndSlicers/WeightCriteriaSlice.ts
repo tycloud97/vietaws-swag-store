@@ -12,7 +12,7 @@ export type WeightedCriteriaType = {
 const initialState: WeightedCriteriaType[] = [];
 
 const WeightedCriteriaSlice = createSlice({
-	name: 'WeightedCriteria',
+	name: 'Contact',
 	initialState,
 	reducers: {
 		setWeightedCriteria(state, action: PayloadAction<WeightedCriteriaType[]>): typeof state {

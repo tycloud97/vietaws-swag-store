@@ -1,7 +1,10 @@
 import { Button, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { getProducts } from 'services/product-service';
+import ProductSelectionSlice from 'services/redux/actionsAndSlicers/ProductSelectionSlice';
+import { RootState } from 'services/redux/rootReducer';
 import ProductItem from './components/ProductItem';
 
 
@@ -23,27 +26,42 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductSelection: React.FC = () => {
 	const products = getProducts()
-	const actionButtonLabel = 'Thêm vào giỏ hàng';
-	const actionButtonRemoveLabel = 'Xóa khỏi giỏ hàng';
-	const isSelected = false
+	const ACTION_BUTTON_LABEL = 'Thêm vào giỏ hàng';
+	const ACTION_BUTTON_REMOVE_LABEL = 'Xóa khỏi giỏ hàng';
 
 	const classes = useStyles();
 
-	const actionCallback = () => { }
+	const productSelection = useSelector((state: RootState) => state.ProductSelection, shallowEqual);
 
-	const disabled = false
+	const { selectedProducts } = productSelection
+	const dispatch = useDispatch();
+
 	return (
 		<div className={classes.divMain}>
 			<Grid container justify='center' alignContent='center'>
-				{products.map((product) => <Grid item xs={3} className={classes.gridItem} key={product.id}>
-					<ProductItem product={product} actionComponent={getActionButton(
-						actionButtonLabel,
-						actionButtonRemoveLabel,
-						isSelected,
-						actionCallback,
-						disabled
-					)} />
-				</Grid>)}
+				{products.map((product) => {
+					const isSelected = selectedProducts?.filter(selectedProduct => selectedProduct.id === product.id)?.length > 0
+
+					// action callback
+					const actionCallback = isSelected
+						? () => {
+							dispatch(ProductSelectionSlice.actions.deleteSelectedProduct(product.id));
+						}
+
+						: () => {
+							dispatch(ProductSelectionSlice.actions.addSelectedProduct({ id: product.id }));
+						}
+
+					return <Grid item xs={3} className={classes.gridItem} key={product.id}>
+						<ProductItem product={product} actionComponent={getActionButton(
+							ACTION_BUTTON_LABEL,
+							ACTION_BUTTON_REMOVE_LABEL,
+							isSelected,
+							actionCallback,
+							false
+						)} />
+					</Grid>
+				})}
 			</Grid>
 		</div>
 	);
@@ -73,7 +91,7 @@ function getActionButton(
 
 	return (
 		<Button
-			color="primary"
+			color="secondary"
 			disabled={disabled}
 			fullWidth
 			onClick={clickCallBack}

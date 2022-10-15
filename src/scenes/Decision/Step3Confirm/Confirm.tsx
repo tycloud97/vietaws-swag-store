@@ -1,6 +1,9 @@
-import { makeStyles, Typography } from '@material-ui/core';
+import { Button, makeStyles, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { createOrderAsync } from 'services/redux/actionsAndSlicers/OrderSlice';
+import { RootState } from 'services/redux/rootReducer';
 
 const useStyles = makeStyles((theme) => ({
 	divMain: {
@@ -17,12 +20,24 @@ const useStyles = makeStyles((theme) => ({
 const Confirm: React.FC = () => {
 
 	const classes = useStyles();
+	const { status } = useSelector((state: RootState) => state.Order, shallowEqual);
+
+	const dispatch = useDispatch();
 
 	return (
 		<div className={classes.divMain}>
 			<Grid container justify='center' alignContent='center'>
 				<Grid item className={classes.gridItem} xs={12}>
 					<Typography align='center' variant='h1'>Bạn chắc chắn muốn đặt đơn hàng này chứ?</Typography>
+				</Grid>
+
+				<Grid item className={classes.gridItem} xs={12}>
+					<Button
+						onClick={() => dispatch(createOrderAsync())}
+					>
+						Add Task
+					</Button>
+					{status === 'loading' ? 'Loading' : 'Add Task Async'}
 				</Grid>
 			</Grid>
 		</div>

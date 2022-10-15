@@ -2,8 +2,12 @@
 import { Box, Divider, Grid, Typography } from '@material-ui/core'
 import { InsetSpacing } from 'components/Spacing'
 import React, { ReactElement } from 'react'
+import { shallowEqual, useSelector } from 'react-redux';
+import { RootState } from 'services/redux/rootReducer';
 
 const CartItem = () => {
+
+
     return <Box
         style={{
             display: 'flex',
@@ -57,6 +61,8 @@ const CartItem = () => {
 }
 export const ShoppingCart = (
 ): ReactElement => {
+    const { selectedProducts } = useSelector((state: RootState) => state.ProductSelection, shallowEqual);
+
     return <InsetSpacing scale={3}>
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -64,32 +70,35 @@ export const ShoppingCart = (
                     Giỏ hàng của bạn
                 </Typography>
             </Grid>
-            <Grid item xs={12}>
-                <Grid container direction="row" spacing={2}>
-                    <Grid
-                        alignContent="flex-end"
-                        alignItems="flex-end"
-                        item
-                        xs={12}
-                    >
-                        <CartItem />
-                    </Grid>
+            {selectedProducts.map(selectedProduct => {
+                return <Grid key={selectedProduct.id} item xs={12}>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid
+                            alignContent="flex-end"
+                            alignItems="flex-end"
+                            item
+                            xs={12}
+                        >
+                            <CartItem />
+                        </Grid>
 
-                    <Grid item xs={12} >
-                        <Divider />
-                    </Grid>
+                        <Grid item xs={12} >
+                            <Divider />
+                        </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography color="textSecondary" display='inline' variant="h6">
-                            Tổng cộng:&nbsp;
-                        </Typography>
-                        <Typography color="textPrimary"
-                            style={{ fontWeight: 'bold' }} display='inline' variant="h6">
-                            100,000 VND
-                        </Typography>
+                        <Grid item xs={12}>
+                            <Typography color="textSecondary" display='inline' variant="h6">
+                                Tổng cộng:&nbsp;
+                            </Typography>
+                            <Typography color="textPrimary"
+                                style={{ fontWeight: 'bold' }} display='inline' variant="h6">
+                                100,000 VND
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            })}
+
         </Grid>
     </InsetSpacing>
 }

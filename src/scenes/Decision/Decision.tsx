@@ -126,6 +126,7 @@ const Decision: React.FC = () => {
 	const handleStepChange = (newDirection: number, element: string) => {
 		dispatch(AppSlice.actions.setAreInstructionsVisible(false));
 		const newStep = activeStepNum + newDirection;
+
 		setStepCompleted(activeStepNum);
 
 		setTimeout(() => {

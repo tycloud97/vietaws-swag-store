@@ -21,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm: React.FC = () => {
 
-
 	const classes = useStyles();
-
 
 	return (
 		<div className={classes.divMain}>
