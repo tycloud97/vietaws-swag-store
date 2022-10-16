@@ -1,4 +1,0 @@
-*.js
-*.d.ts
-cdk.out
-cdk.context.json
