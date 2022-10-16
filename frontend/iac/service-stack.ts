@@ -87,6 +87,8 @@ export class ServiceStack extends cdk.Stack {
 
     new s3Deploy.BucketDeployment(this, 'BucketDeployment', {
       sources: [s3Deploy.Source.asset('../build')],
+      distribution: distribution,
+      distributionPaths: ['/*'],
       destinationBucket: bucket,
     })
   }
