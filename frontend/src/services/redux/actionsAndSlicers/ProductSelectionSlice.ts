@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Product } from 'openapi';
 
-export type Product = {
-	id: string;
-};
 
 type ProductSelectionState = {
 	selectedProducts: Product[];

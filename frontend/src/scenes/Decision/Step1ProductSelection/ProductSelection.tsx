@@ -75,7 +75,7 @@ const ProductSelection: React.FC = () => {
 						}
 
 						: () => {
-							dispatch(ProductSelectionSlice.actions.addSelectedProduct({ id: product.id }));
+							dispatch(ProductSelectionSlice.actions.addSelectedProduct(product));
 						}
 
 					return <>
