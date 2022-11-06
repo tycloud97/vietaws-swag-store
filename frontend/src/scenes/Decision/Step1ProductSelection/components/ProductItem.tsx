@@ -1,8 +1,10 @@
-import { Box, Button, Card, Collapse, Typography } from "@material-ui/core";
+import { Box, Button, Card, Collapse, FormControl, FormControlLabel, Radio, RadioGroup, TextField, Tooltip, Typography } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { InsetSpacing } from "components/Spacing";
 import React, { useState } from "react";
 import { Product } from "services/product-service";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 export type ProductItemProps = {
     product: Product
@@ -22,8 +24,8 @@ const ProductItem = (props: ProductItemProps) => {
 
     const imageComponent = <span style={{ display: 'flex', flex: 1, position: 'relative' }}>
         <img
-            alt={''}
-            src={'https://salt.tikicdn.com/cache/750x750/ts/product/3e/50/02/d0b935f7e87aa7c53c3eff4aa6c641d1.jpg.webp'}
+            alt={product.thumbnail_url}
+            src={product.thumbnail_url}
             style={{
                 height: 'auto',
                 width: '100%',
@@ -43,6 +45,17 @@ const ProductItem = (props: ProductItemProps) => {
         marginLeft: 'auto',
     }
 
+    const [count, setCount] = useState(1);
+    const IncNum = () => {
+        setCount(count + 1);
+    };
+    const DecNum = () => {
+        if (count > 1) { setCount(count - 1); }
+        else {
+            setCount(1);
+            alert("min limit reached");
+        }
+    };
     return (<Card elevation={2} style={{ minHeight: '100%' }}>
         <InsetSpacing scale={3}>
             <Typography align="center" color="textPrimary" variant="h5">
@@ -63,6 +76,33 @@ const ProductItem = (props: ProductItemProps) => {
                     VND
                 </Typography >
             </Box>
+            <Box mb={3} display={'flex'} alignItems={'flex-start'} justifyContent={'center'}>
+                <Tooltip title="Delete">
+                    <Button variant="contained" onClick={IncNum}>
+                        <AddIcon />
+                    </Button>
+                </Tooltip>
+                <TextField variant="outlined" style={{ 'width': '50px', 'margin': '0 10px' }} size="small" InputProps={{
+                    inputProps: {
+                        style: { textAlign: "center" },
+                    }
+                }} disabled value={count} />
+                <Button variant="contained" onClick={DecNum}>
+                    <RemoveIcon />
+                </Button>
+            </Box>
+            {product?.options && <Box mb={3} display={'flex'} alignItems={'flex-start'} justifyContent={'center'}>
+                <FormControl>
+                    <RadioGroup
+                        row
+                    >
+                        {product?.options?.map(((option: any) => {
+                            return Object.keys(option).map(key => option[key]?.map((item: any) => <FormControlLabel key={item} value={item} control={<Radio />} label={item} />))
+                        }))}
+                    </RadioGroup>
+                </FormControl>
+            </Box>}
+
 
             {actionComponent}
             <Button

@@ -1,13 +1,20 @@
 
 import { Box, Divider, Grid, Typography } from '@material-ui/core'
 import { InsetSpacing } from 'components/Spacing'
+import { Product as OrderProduct } from 'openapi';
 import React, { ReactElement } from 'react'
 import { shallowEqual, useSelector } from 'react-redux';
 import { RootState } from 'services/redux/rootReducer';
 
-const CartItem = () => {
+export type CartItemProps = {
+    product: OrderProduct
+}
+function formatCurrency(num: number) {
+    return num?.toLocaleString().replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+}
 
-
+const CartItem = (props: CartItemProps) => {
+    const { product } = props
     return <Box
         style={{
             display: 'flex',
@@ -15,8 +22,8 @@ const CartItem = () => {
             flexDirection: 'row',
         }}>
         <img
-            alt={''}
-            src={'https://salt.tikicdn.com/cache/750x750/ts/product/3e/50/02/d0b935f7e87aa7c53c3eff4aa6c641d1.jpg.webp'}
+            alt={product.thumbnail_url}
+            src={product.thumbnail_url}
             height="96px"
             style={{ objectFit: 'contain' }}
             width="96px"
@@ -32,20 +39,16 @@ const CartItem = () => {
                     display="block"
                     style={{ fontWeight: 'bold' }}
                 >
-                    1 x Áo Thun Unisex EARTH
+                    1 x {product.name}
                 </Typography>
-                <Typography
+                {product?.options?.map(() => {
+                    <Typography
                     color="textPrimary"
                     display="block"
                 >
                     Size: XL
                 </Typography>
-                <Typography
-                    color="textPrimary"
-                    display="block"
-                >
-                    Màu: Vàng
-                </Typography>
+                })}
             </Box>
             <Box textAlign={'end'}>
                 <Typography color="textSecondary" display='inline' >
@@ -53,12 +56,15 @@ const CartItem = () => {
                 </Typography>
                 <Typography color="textPrimary"
                     display='inline'>
-                    100,000 VND
+                    {formatCurrency(product.price)}
+                    VND
                 </Typography>
             </Box>
         </Box>
     </Box>
 }
+
+
 export const ShoppingCart = (
 ): ReactElement => {
     const { selectedProducts } = useSelector((state: RootState) => state.ProductSelection, shallowEqual);
@@ -79,25 +85,26 @@ export const ShoppingCart = (
                             item
                             xs={12}
                         >
-                            <CartItem />
+                            <CartItem product={selectedProduct} />
                         </Grid>
 
-                        <Grid item xs={12} >
-                            <Divider />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Typography color="textSecondary" display='inline' variant="h6">
-                                Tổng cộng:&nbsp;
-                            </Typography>
-                            <Typography color="textPrimary"
-                                style={{ fontWeight: 'bold' }} display='inline' variant="h6">
-                                100,000 VND
-                            </Typography>
-                        </Grid>
                     </Grid>
                 </Grid>
             })}
+                        
+            <Grid item xs={12} >
+                <Divider />
+            </Grid>
+
+            <Grid item xs={12}>
+                <Typography color="textSecondary" display='inline' variant="h6">
+                    Tổng cộng:&nbsp;
+                </Typography>
+                <Typography color="textPrimary"
+                    style={{ fontWeight: 'bold' }} display='inline' variant="h6">
+                    {formatCurrency(selectedProducts.map(item => item.price).reduce((prev, curr) => prev + curr, 0))} VND
+                </Typography>
+            </Grid>
 
         </Grid>
     </InsetSpacing>

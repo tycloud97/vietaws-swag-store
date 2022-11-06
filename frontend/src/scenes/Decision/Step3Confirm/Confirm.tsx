@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { RootState } from 'services/redux/rootReducer';
-import { ContactFormFields } from '../Step2ContactForm/components/ContactFormFields';
 import { ShoppingCart } from '../Step2ContactForm/components/ShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +29,6 @@ const Confirm: React.FC = () => {
 				<Grid item className={classes.gridItem} xs={12}>
 					<Typography align='center' variant='h1'>Bạn chắc chắn muốn đặt đơn hàng này chứ?</Typography>
 					<ShoppingCart />
-					<ContactFormFields />
 					{status === 'loading' ? 'Loading' : ''}
 				</Grid>
 			</Grid>

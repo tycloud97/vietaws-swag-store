@@ -46,5 +46,5 @@ export const NOT_ENOUGH_CONTACT: AlertType = {
 	type: AlertTypes.info,
 	allowClose: false,
 	autoHide: true	,
-	text: 'Vui long dien day du thong tin! ',
+	text: 'Vui lòng điền thông tin liên lạc! ',
 };
