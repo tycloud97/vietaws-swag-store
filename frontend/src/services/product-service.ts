@@ -5,6 +5,7 @@ export declare type Product = {
     price: number,
     thumbnail_url: string,
     options?: { [key: string]: any; };
+    quantity?: number
 }
 
 export function getProducts() {

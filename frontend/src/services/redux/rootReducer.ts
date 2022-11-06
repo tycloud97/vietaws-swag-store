@@ -8,6 +8,7 @@ import RatedOptionsSlice from './actionsAndSlicers/RatedOptionsSlice';
 import WeightedCriteriaSlice from './actionsAndSlicers/WeightCriteriaSlice';
 import DeliveryAddressSlice from './actionsAndSlicers/DeliveryAddressSlice';
 import OrderSlice from './actionsAndSlicers/OrderSlice';
+import ProductSlice from './actionsAndSlicers/ProductSlice';
 
 const rootReducer = combineReducers({
 	App: AppSlice.reducer,
@@ -18,6 +19,8 @@ const rootReducer = combineReducers({
 	Contact: ContactSlice.reducer,
 	DeliveryAddress: DeliveryAddressSlice.reducer,
 	Order: OrderSlice.reducer,
+	Product: ProductSlice.reducer,
+
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
